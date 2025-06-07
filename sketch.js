@@ -1,7 +1,7 @@
 let resposta = 'Olá, eu sou AgrIAn, IA do Agrinho feito pelo Jhuan Pablo Santos Cisz, eu respondo todas suas perguntas. Selecione uma pergunta abaixo para saber mais sobre o Concurso Agrinho de Programação 2025!';
 let estadoRobo = 'normal';
 let framePiscar = 0;
-let perguntaAperguntaAtualtual = '';
+let perguntaAtual = '';
 let mostrandoPerguntas = true;
 let inputFiltro;
 let botoes = [];
@@ -92,18 +92,19 @@ const respostas = {
 };
 
 function setup() {
-  createCanvas(1000, 2500);
+  // Tamanho ajustado para uma página grande (formato A4 em pixels)
+  createCanvas(1200, 3000);
   textAlign(CENTER, CENTER);
   
-  // Criar campo de filtro
+  // Criar campo de filtro posicionado abaixo do balão de resposta
   inputFiltro = createInput('');
-  inputFiltro.position(width/2 - 410, 570);
+  inputFiltro.position(width/2 - 415, 700); // Posição ajustada
   inputFiltro.size(800, 50);
   inputFiltro.style('font-size', '20px');
   inputFiltro.style('padding', '10px');
   inputFiltro.style('border-radius', '20px');
   inputFiltro.style('border', '2px solid #2E7D32');
-  inputFiltro.input(filtrarPerguntas); // Chamar filtrarPerguntas quando o texto mudar
+  inputFiltro.input(filtrarPerguntas);
   
   criarBotoesPerguntas();
   window.addEventListener('keydown', voltarPerguntas);
@@ -118,8 +119,6 @@ function draw() {
   if (!mostrandoPerguntas) {
     drawInstrucaoChamativa();
   }
-  
-
 }
 
 function filtrarPerguntas() {
@@ -137,9 +136,10 @@ function filtrarPerguntas() {
 function criarBotoesPerguntas() {
   for (let i = 0; i < perguntas.length; i++) {
     let botao = createButton(perguntas[i]);
-    botao.position(width/2 - 400, 680 + i * 85);
+    botao.position(width/2 - 400, 800 + i * 85); // Posição ajustada para começar mais abaixo
     botao.size(800, 70);
     
+    // Estilos mantidos
     botao.style('font-size', '26px');
     botao.style('font-weight', 'bold');
     botao.style('font-family', 'Arial, sans-serif');
@@ -179,7 +179,7 @@ function drawFundoDinamico() {
   
   noStroke();
   fill(255, 255, 255, 15);
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 50; i++) { // Mais folhas para preencher o espaço maior
     drawLeaf(random(width), random(height), random(25, 60));
   }
 }
@@ -245,7 +245,6 @@ function drawBalaoRespostaPremium() {
   drawingContext.shadowColor = 'rgba(0,0,0,0.25)';
   drawingContext.shadowOffsetY = 15;
   rect(width/2 - 420, 350, 840, 320, 50);
-  
   fill('#E4F1E6');
   textSize(26);
   textLeading(36);
@@ -263,10 +262,10 @@ function drawInstrucaoChamativa() {
   textSize(24);
   textStyle(BOLD);
   textAlign(CENTER);
-  text('Pressione QUALQUER TECLA para voltar às perguntas', width/2, 620);
+  text('Pressione QUALQUER TECLA para voltar às perguntas', width/2, 750); // Posição ajustada
   
   push();
-  translate(width/2, 660);
+  translate(width/2, 790); // Posição ajustada
   rotate(frameCount * 0.05);
   fill(255, 215, 0);
   noStroke();
@@ -294,8 +293,8 @@ function mostrarPerguntas() {
     botao.show();
   }
   inputFiltro.show();
-  inputFiltro.value(''); // Limpa o filtro ao voltar
-  filtrarPerguntas(); // Atualiza a lista de perguntas
+  inputFiltro.value('');
+  filtrarPerguntas();
   resposta = 'Selecione uma pergunta abaixo para saber mais sobre o Concurso Agrinho de Programação 2025!';
   estadoRobo = 'normal';
 }
@@ -306,7 +305,6 @@ function voltarPerguntas(event) {
   }
 }
 
-// Função auxiliar para gradiente vertical
 function setGradient(x, y, w, h, c1, c2) {
   noFill();
   for (let i = y; i <= y + h; i++) {
