@@ -11,7 +11,7 @@ Escola: Colégio Estadual Rio Branco
 
 Cidade: Rio Branco do Ivaí
 
-Tema : IA DO AGRINHO
+Tema : Festejando a conexão campo cidade
 
 # Referencias:
 Imagens: https://chat.deepseek.com/sign_in
